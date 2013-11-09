@@ -1,0 +1,123 @@
+html, body, .menubox, #nav, h1, h2, ul, p{
+	margin: 0;
+	padding: 0;
+}
+
+/* Background Images */
+body {
+	height: 100%;
+	width: 100%;
+	background: url(/img/cheese.jpg) no-repeat center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+#bgimg {
+	background: #FAFAFA;
+	z-index: -999;
+	min-height: 100%;
+	min-width: 1024px;
+	width: 100%;
+	height: auto;
+	position: fixed;
+	top: 0;
+	left: 0;
+}
+
+/* Font Size Adjustment */
+.big {
+	font-size: 7em;
+}
+.normal {
+	font-size: 5em;
+}
+.small {
+	font-size: 3em;
+}
+.smaller {
+	font-size: 2em;
+}
+.tiny {
+	font-size: 1.5em;
+}
+
+/*fonts*/
+@font-face {
+	font-family: 'Helvetica Neue';
+	src: url('hneue.ttf');
+}
+h1 {
+	font-family: 'Helvetica Neue';
+	font-size: 6em;
+	font-weight: 100;
+	text-align: center;
+	color: #3104B4;
+}
+
+/*form*/
+#wrapbox {
+	width: 350px;
+	margin: 3% auto;
+	border: none;
+}
+#wrapbox2 {width: 100%; padding: 5%;
+	background: #FFFFFF;
+	color: #424242;
+	border: 3px solid #F2F2F2;
+	-moz-box-shadow: 0 0 10px #424242;
+	-webkit-box-shadow: 0 0 10px #424242;
+	box-shadow: 0 0 10px #424242;
+	border-radius: 10px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+}
+#wrapbox2 h2{
+	font-family: "Helvetica Neue";
+	text-align: left;
+	font-size: 0.9em;
+	border-bottom: 1px solid #EEE;
+	padding-bottom: 10px;
+	margin-bottom: 10px;
+}
+label{
+	text-transform: uppercase;
+	font-size: 1.1em;
+	font-weight: 100;
+	font-family: "Helvetica Neue";
+}
+textarea{
+	color: #000;
+	font-family: "Helvetica Neue";
+}
+.error{
+	background-color: #AB0000;
+	color: #424242;
+	font-size: 1.2em;
+	margin-top: 10px;
+	padding: 10px;
+	text-transform: uppercase;
+	width: 240px;
+}
+#loading{
+	position: relative;
+	bottom: 10px;
+	visibility: hidden;
+}
+td.formerror span {
+	font-family: 'Maiden Orange';
+	cursor: pointer;
+	font-size: 22px;
+	text-align: center;
+	width: 120px;
+	padding: 6px 2px 2px;
+	color: #330570;
+	background: #F2F5A9 no-repeat;
+	display: block;
+	text-decoration: none;
+	position: relative;
+	z-index: 200;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+}

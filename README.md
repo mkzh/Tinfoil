@@ -1,3 +1,3 @@
 Tinfoil 
 =======
-An Onion Routing client
+an onion routing client
