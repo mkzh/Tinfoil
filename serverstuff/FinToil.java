@@ -4,19 +4,101 @@ import java.net.*;
 
 public class FinToil
 {
-	private static String encryptCommandsA = "gpg --encrypt --batch -r";
-	private static String encryptCommandsB = "--output";
-	private static String decryptCommandsA = "gpg --passphrase";
-	private static String decryptCommandsB = "--batch -d --output";
-	private static String[] serverNames = {"ServerA", "ServerB", "ServerC"};
-	private static String[] serverAddresses = {"A", "B", "C"};
-	private static String[] serverKeys = {"C2D8F70A", "100CC8E3", "B7247D65"};
+	private static String encryptCommandsA    = "gpg --encrypt --batch -r";
+	private static String encryptCommandsB    = "--output";
+	private static String decryptCommandsA    = "gpg --passphrase";
+	private static String decryptCommandsB    = "--batch -d --output";
+	private static String[] serverNames       = {"ServerA", "ServerB", "ServerC"};
+	private static String[] serverAddresses   = {"A", "B", "C"};
+	private static String[] serverKeys        = {"C2D8F70A", "100CC8E3", "B7247D65"};
+	private static String[] serverPassphrases = {"MikeZhang2017", "1234", "1234"};
 
-	public static void main(String[] args)
+	//command line arguments 
+	// args[0] = name of ciphertext file going in.
+	// args[1] = name of the encrypted file going out.
+	public static void main(String[] args) throws Exception
 	{
+		String email = "ERROR";
+		double delay = -1;
+		String publicKey = "ERROR";
+		String url = "ERROR";
+
+		String ciphertext = args[0];
+		String plainFile = "plaintext.txt";
+
+		//decrypt ciphertext into newFile
+		decrypt(ciphertext, serverPassphrases[0], plainFile);
+
+		String plaintext = "";
+
+		try
+		{
+			//read newFile and turn it into a string
+			BufferedReader br = new BufferedReader(new FileReader(plainFile));
+			StringTokenizer tokenizer = new StringTokenizer(br.readLine());
+
+	       	while(tokenizer.hasMoreTokens())
+	       	{
+	       		String x = tokenizer.nextToken();
+	      		plaintext = plaintext + " " + x;
+	      	}
+
+	      	email = getAddress(plaintext);
+	      	delay = getDelay(plaintext);
+	      	publicKey = getKey(plaintext);
+	      	url = getSite(plaintext);
+
+	    }
+
+	    catch (IOException e)
+      	{
+       		System.out.println (e.getMessage());
+   		}
+
+   		String onionFile = args[1];
+   		
+   		int steps = 2; 
+
+   		double[] timeWeights = getTimeWeights(delay, steps);
+
+   		double timeToFetch = timeWeights[0];
+   		double timeToSend  = timeWeights[1];
+
+   		for(int i = 0; i < 1e9 * timeToFetch; i++);
+
+   		String html = "";
+   		try
+   		{
+   			html = request(url);
+   		}
+
+   		catch (IOException e)
+   		{
+   			System.out.println (e.getMessage());
+   		}
+
+   	   	for(int i = 0; i < 1e9 * timeToSend; i++);
+
+   		encrypt(html, publicKey, "encryptedFile.txt");
 
 	}
 
+	public static String request(String url) throws Exception {
+        URL site = new URL(url);
+        URLConnection connect = site.openConnection();
+        BufferedReader in = new BufferedReader(
+                new InputStreamReader(connect.getInputStream()));
+        String inputLine;
+        StringBuilder sb = new StringBuilder();
+        while ((inputLine = in.readLine()) != null) 
+            sb.append(inputLine);
+        return sb.toString();
+    }
+
+
+	//make an onion file with the filename and extension found in toFile
+	// @String fromFile: file we're encrypting
+	// @String toFile: file we're 
 	public static void makeOnion (String fromFile, String toFile, String userEmail, String userKey,  String[] path, double[] timeSteps)
 	{
 		int layers = path.length;
@@ -57,8 +139,12 @@ public class FinToil
        				ciphertext += tokenizer.nextToken();
 
        			String message = destination + " " + delay + " " + ciphertext;
+       			System.out.println("Message: " + message);
 
 				FileWriter fw = new FileWriter(olderOnion);
+
+				//POSSIBLE SOURCE OF ERROR
+				fw.write(message);
 			}
 
 			catch (IOException e)
@@ -152,6 +238,7 @@ public class FinToil
       	}
 	}
 
+	//decrypt ciphertext into a new file
 	public static void decrypt(String ciphertext, String passPhrase, String newFileName)
 	{
 		Process		p;
