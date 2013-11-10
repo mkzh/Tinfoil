@@ -10,8 +10,8 @@ public class FinToil
 	private static String decryptCommandsB    = "--batch -d --output";
 	private static String[] serverNames       = {"ServerA", "ServerB", "ServerC"};
 	private static String[] serverAddresses   = {"A", "B", "C"};
-	private static String[] serverKeys        = {"C2D8F70A", "100CC8E3", "B7247D65"};
-	private static String[] serverPassphrases = {"MikeZhang2017", "1234", "1234"};
+	private static String[] serverKeys        = {"C2D8F70A"} //, "100CC8E3", "B7247D65"};
+	private static String[] serverPassphrases = {"MikeZhang2017"} //, "1234", "1234"};
 
 	//command line arguments 
 	// args[0] = name of ciphertext file going in.
@@ -229,6 +229,7 @@ public class FinToil
 		//encrypts the given file and saves it to the newFileName
 		try
 		{
+      System.out.println(fullCommand);
 			p = Runtime.getRuntime().exec(fullCommand);
 		}
 		
