@@ -55,7 +55,6 @@ public class TCPMain
             if(tokenizer.nextToken().contains("Email:"))
             {
                address = tokenizer.nextToken();
-               System.out.println("Address: " + address);
                foundDestination = true; 
             }
          }
@@ -194,28 +193,5 @@ public class TCPMain
       }
 
       return source;
-   }
-
-   //returns true if successfully encrypted
-   public static String encrypt(String message, String publicKey)
-   {
-      // text to be encrypted
-      String      text = message;
-      // The ID of PGP key (use gpg --list-keys to get the key ID)
-      String      keyID = publicKey; 
-      boolean     result;
-
-      GnuPG pgp = new GnuPG ();
-
-      result = pgp.encrypt (text, keyID);
-      if (result)
-      {
-         return pgp.getResult();
-      }
-      else
-      {
-          System.out.println("Error Encrypting!");
-          return "Error";
-      }
    }
 }

@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>FINTOIL</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="Tinfoil is an email-based onion routing service for web browsing.">
+    <meta name="author" content="Tinfoil Team at HackPrinceton">
+
+<!--if IE-->
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+
+<link rel="stylesheet" href="style.css" type="text/css" media="screen">
+<link href='http://fonts.googleapis.com/css?family=Lato:300|Cutive+Mono|Maiden+Orange|Roboto:400' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+
+<div id="box">
+    <h1>*FINTOIL*</h1>
+    <h2>an onion routing service for secure web browsing</h2>
+    <h2>...</h2>
+    <p>OVERVIEW: Want to browse the web, but believe that even Tor poses too high of a risk due to low latency? Fintoil will securely retrieve the html page for you via onion routing.</p>
+    <p>USAGE: email Fintoil with the body containing the RSA encrypted details of the content you want to retrieve. Fintoil will email you back with the html page encrypted with your key.</p>
+    <p>1. Create a textfile containing your email, your desired URL, latency value, and public key.</p>
+    <div id="code">
+        <p>$ vim oldFile.txt</p>
+        <p>~ email: user@email.com</p>
+        <p>~ site: www.url.com </p>
+        <p>~ delay: latency</p>
+        <p>~ key: public key</p>
+    </div>
+    <p>2. Encrypt the textfile with your public key.</p>
+    <div id="code">
+        <p>$ gpg --encrypt --batch -r 5D8315B9 --output newFile.txt oldFile.txt</p>
+    </div>
+    <p>You can download our public key <a href="public.key">here</a>.</p>
+    <p>3. Send us your encrypted file! </p>
+</div>
+
+<div id="footer">
+    <p>TINFOIL team @ HackPrinceton!</p>
+</div>
+
+</body>
+</html>
