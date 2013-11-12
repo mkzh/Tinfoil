@@ -24,11 +24,10 @@ body {
 #box {
     margin-left: 15%;
     margin-right: 15%;
-    height: 100%;
     background-color: #FF7373;
     padding: 5%;
 }
-#code {
+.code {
     padding-left: 5%;
     padding-right: 5%;
     padding-top: 2%;
@@ -41,6 +40,7 @@ body {
     -webkit-box-shadow: inset 0 0 5px #424242;
     box-shadow: inset 0 0 5px #424242;
 }
+/* FONTS */
 a:link, a:visited, a:active {
     text-decoration: none;
     color: #006363;
@@ -57,18 +57,26 @@ h1 {
 }
 h2 {
     margin: 0;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Cutive Mono', sans-serif;
     text-align: center;
-    font-size: 1em;
+    font-size: 1.5em;
     font-weight: 400;
     color: #A60000;
+}
+h3 {
+    font-family: 'Maiden Orange', cursive;
+    font-size: 4em;
+    text-align: center;
+    color: #009999;
 }
 p {
     font-family: 'Lato', sans-serif;
     font-weight: 300;
+    word-wrap: break-word;
 }
 #code p {
     margin: 0;
+    line-height: 0.95;
     font-family: 'Cutive Mono', sans-serif;
     font-weight: 300;
     color: #FFFFFF;
@@ -77,4 +85,12 @@ p {
     margin: 5px;
     font-size: 15px;
     color: #FFFFFF;
+}
+/* OBFUSCATE EMAIL */
+p span.nodisplay {
+    display:none;
+}
+span.rtl {
+    unicode-bidi: bidi-override;
+    direction: rtl;
 }
